@@ -1,9 +1,13 @@
+/**
+ * Your implement of lodash method
+ */
+
 'use strict';
 export function chunk(arr, size) {
   const length = arr.length;
   if (length <= size) return arr;
-  let ans = [];
-  let pos = 0,
+  let ans = [],
+    pos = 0,
     ansidx = 0;
   while (pos < length) {
     ans[ansidx++] = arr.slice(pos, (pos += size));
@@ -14,15 +18,14 @@ export function chunk(arr, size) {
 export function compact(arr) {
   var ans = [];
   arr.forEach(function (ele) {
-    if (ele) ans.push(ele);
+    if (!ele) ans.push(ele);
   });
   return ans;
 }
 
-export function concat(arr) {
-  var values = [];
-  for (var _i = 1; _i < arguments.length; _i++) {
-    values[_i - 1] = arguments[_i];
+export function concat(arr, ...values) {
+  for (var i = 1; i < arguments.length; i++) {
+    values[i - 1] = arguments[i];
   }
   for (var i = 1; i < arguments.length; i++) {
     if (!arguments[i][0]) arr.push(arguments[i]);
@@ -31,17 +34,10 @@ export function concat(arr) {
   return arr;
 }
 
-export function difference(arr) {
-  var values = [];
-  for (var _i = 1; _i < arguments.length; _i++) {
-    values[_i - 1] = arguments[_i];
-  }
+export function difference(arr, ...args) {
   var ans = [];
-  var record = concat(values);
-  for (var _a = 0, arr_1 = arr; _a < arr_1.length; _a++) {
-    var v = arr_1[_a];
-    if (record.indexOf(v) == -1) ans.push(v);
-  }
+  var record = concat(...args); //Recording all compare values
+  for (var v of arr) if (record.indexOf(v) == -1) ans.push(v); //If is different value, push to return array
   return ans;
 }
 
@@ -53,13 +49,11 @@ export function differenceBy(arr, ...values) {
   }, []);
   if (typeof f == 'function') {
     ref = ref.map(x => f(x));
-    for (let i = 0; i < arr.length; i++)
-      if (!ref.includes(f(arr[i]))) ans.push(arr[i]);
+    for (let i = 0; i < arr.length; i++) if (!ref.includes(f(arr[i]))) ans.push(arr[i]);
   }
   if (typeof f == 'string') {
     ref = ref.map(x => x[f]);
-    for (var i = 0; i < arr.length; i++)
-      if (!ref.includes(arr[i][f])) ans.push(arr[i]);
+    for (var i = 0; i < arr.length; i++) if (!ref.includes(arr[i][f])) ans.push(arr[i]);
   }
   if (Array.isArray(f)) {
     values.push(f);
@@ -68,7 +62,13 @@ export function differenceBy(arr, ...values) {
   return ans;
 }
 
-let arr = [
-  [2, 1],
-  [2, 3]
-];
+export function differenceWith() {}
+
+export function example() {
+  /* Your implement */
+}
+
+// The following functions are the tools used to verify data type
+export function isUndefined(value) {
+  return value === undefined;
+}

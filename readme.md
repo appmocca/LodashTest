@@ -1,8 +1,10 @@
 # 一个自动化测试你Lodash代码的工具
 
 ## 运行测试
-node testLodash.js -h  
+npm i  
+node test.js -h   
 
-## 加入新的测试
-node generateTest.js [function name]  
-根据命令行输出复制到testLodash.js后配置测试即可  
+## Release log
+0.0.1 Project started  
+0.0.2 Main function is completed  
+0.1.0 Array test completed & check if methods completed or failed or not finished yet
